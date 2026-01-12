@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>선박 목록</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>선박 목록</h1>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: green;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <a href="{{ url_for('add_vessel') }}">새 선박 추가</a>
+    <a href="{{ url_for('home') }}">홈으로</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>선박명</th>
+                <th>IMO 번호</th>
+                <th>선종</th>
+                <th>국적</th>
+                <th>건조년도</th>
+                <th>상세</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vessel in vessels %}
+            <tr>
+                <td>{{ vessel.vessel_name }}</td>
+                <td>{{ vessel.imo_number }}</td>
+                <td>{{ vessel.vessel_type }}</td>
+                <td>{{ vessel.flag }}</td>
+                <td>{{ vessel.build_year }}</td>
+                <td><a href="">상세보기</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

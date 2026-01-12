@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>선박 추가</title>
+</head>
+<body>
+    <h1>선박 추가</h1>
+    
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        <div>
+            <label>선박명:</label>
+            <input type="text" name="vessel_name" required>
+        </div>
+        
+        <div>
+            <label>IMO 번호:</label>
+            <input type="text" name="imo_number" required>
+        </div>
+        
+        <div>
+            <label>선종:</label>
+            <input type="text" name="vessel_type">
+        </div>
+        
+        <div>
+            <label>국적:</label>
+            <input type="text" name="flag">
+        </div>
+        
+        <div>
+            <label>건조년도:</label>
+            <input type="number" name="build_year">
+        </div>
+        
+        <button type="submit">추가</button>
+        <a href="{{ url_for('vessels') }}">취소</a>
+    </form>
+</body>
+</html>
